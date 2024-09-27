@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +15,7 @@ import java.util.Map;
 public class CountryCodeConverter {
 
     // TODO Task: pick appropriate instance variable(s) to store the data necessary for this class
+    private List<String[]> countrycodeList = new ArrayList();
 
     /**
      * Default constructor which will load the country codes from "country-codes.txt"
@@ -33,6 +35,10 @@ public class CountryCodeConverter {
         try {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
+
+            for (String line : lines) {
+                countrycodeList.add(line.split("\t"));
+            }
 
             // TODO Task: use lines to populate the instance variable(s)
 

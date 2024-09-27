@@ -14,8 +14,8 @@ import org.json.JSONArray;
  * data from a JSON file. The data is read in once each time an instance of this class is constructed.
  */
 public class JSONTranslator implements Translator {
-
     // TODO Task: pick appropriate instance variables for this class
+    //    public static final ...
 
     /**
      * Constructs a JSONTranslator using data from the sample.json resources file.
