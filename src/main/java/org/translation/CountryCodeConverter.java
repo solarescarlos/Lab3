@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public class CountryCodeConverter {
 
-    // TODO Task: pick appropriate instance variable(s) to store the data necessary for this class
+    // TODO Task - DONE?: pick appropriate instance variable(s) to store the data necessary for this class
     private List<String[]> countrycodeList = new ArrayList();
 
     /**
@@ -39,9 +39,7 @@ public class CountryCodeConverter {
             for (String line : lines) {
                 countrycodeList.add(line.split("\t"));
             }
-
-            // TODO Task: use lines to populate the instance variable(s)
-
+            // TODO Task - DONE?: use lines to populate the instance variable(s)
         }
         catch (IOException | URISyntaxException ex) {
             throw new RuntimeException(ex);
@@ -55,7 +53,12 @@ public class CountryCodeConverter {
      * @return the name of the country corresponding to the code
      */
     public String fromCountryCode(String code) {
-        // TODO Task: update this code to use an instance variable to return the correct value
+        for (int i = 0; i < countrycodeList.size(); i++) {
+            if (countrycodeList.get(i)[2].equals(code.toUpperCase())) {
+                return countrycodeList.get(i)[0];
+            }
+        }
+        // TODO Task - DONE?: update this code to use an instance variable to return the correct value
         return code;
     }
 
@@ -65,7 +68,12 @@ public class CountryCodeConverter {
      * @return the 3-letter code of the country
      */
     public String fromCountry(String country) {
-        // TODO Task: update this code to use an instance variable to return the correct value
+        for (int i = 0; i < countrycodeList.size(); i++) {
+            if (countrycodeList.get(i)[0].equals(country)) {
+                return countrycodeList.get(i)[2];
+            }
+        }
+        // TODO Task - DONE?: update this code to use an instance variable to return the correct value
         return country;
     }
 
@@ -74,7 +82,12 @@ public class CountryCodeConverter {
      * @return how many countries are included in this code converter.
      */
     public int getNumCountries() {
+        int sum = 0;
+        for (int i = 0; i < countrycodeList.size() - 1; i++) {
+            sum += 1;
+        }
         // TODO Task: update this code to use an instance variable to return the correct value
-        return 0;
+        return sum;
     }
 }
+// is it okay to use countrycodeList.size() - 1 ?
