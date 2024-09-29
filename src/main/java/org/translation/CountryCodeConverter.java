@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * This class provides the service of converting country codes to their names.
@@ -36,7 +33,13 @@ public class CountryCodeConverter {
             List<String> lines = Files.readAllLines(Paths.get(getClass()
                     .getClassLoader().getResource(filename).toURI()));
 
-            for (String line : lines) {
+            Iterator<String> iterator = lines.iterator();
+            if (iterator.hasNext()) {
+                iterator.next();
+            }
+
+            while (iterator.hasNext()) {
+                String line = iterator.next();
                 countrycodeList.add(line.split("\t"));
             }
             // TODO Task - DONE?: use lines to populate the instance variable(s)
@@ -83,11 +86,10 @@ public class CountryCodeConverter {
      */
     public int getNumCountries() {
         int sum = 0;
-        for (int i = 0; i < countrycodeList.size() - 1; i++) {
+        for (int i = 0; i < countrycodeList.size(); i++) {
             sum += 1;
         }
-        // TODO Task: update this code to use an instance variable to return the correct value
+        // TODO Task - DONE?: update this code to use an instance variable to return the correct value
         return sum;
     }
 }
-// is it okay to use countrycodeList.size() - 1 ?
