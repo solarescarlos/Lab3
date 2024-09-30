@@ -16,6 +16,9 @@ import java.util.Scanner;
 public class Main {
 
     public static final String Q = "quit";
+
+    private static String countryCode = "";
+    private static String languageCode = "";
     /**
      * This is the main entry point of our Translation System!<br/>
      * A class implementing the Translator interface is created and passed into a call to runProgram.
@@ -43,15 +46,16 @@ public class Main {
     public static void runProgram(Translator translator) {
         while (true) {
             String country = promptForCountry(translator);
+
             if (Q.equals(country)) {
                 break;
             }
             CountryCodeConverter countryConverter = new CountryCodeConverter();
-            country = countryConverter.fromCountry(country);
+            countryCode = countryConverter.fromCountry(country);
             // TODO Task: Once you switch promptForCountry so that it returns the country
             //            name rather than the 3-letter country code, you will need to
             //            convert it back to its 3-letter country code when calling promptForLanguage
-            String language = promptForLanguage(translator, country);
+            String language = promptForLanguage(translator, countryCode);
             if (Q.equals(language)) {
                 break;
             }
@@ -61,8 +65,8 @@ public class Main {
             //            Note: you should use the actual names in the message printed below though,
             //            since the user will see the displayed message.
             LanguageCodeConverter langConverter = new LanguageCodeConverter();
-            language = langConverter.fromLanguage(language);
-            System.out.println(country + " in " + language + " is " + translator.translate(country, language));
+            languageCode = langConverter.fromLanguage(language);
+            System.out.println(country + " in " + language + " is " + translator.translate(country, languageCode));
             System.out.println("Press enter to continue or quit to exit.");
             Scanner s = new Scanner(System.in);
             String textTyped = s.nextLine();

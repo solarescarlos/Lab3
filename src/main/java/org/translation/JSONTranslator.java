@@ -20,7 +20,6 @@ public class JSONTranslator implements Translator {
     // TODO Task: pick appropriate instance variables for this class
     private Map<String, Map<String, String>> mydict = new HashMap<>();
 
-
     /**
      * Constructs a JSONTranslator using data from the sample.json resources file.
      */
